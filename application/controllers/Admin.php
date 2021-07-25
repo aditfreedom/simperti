@@ -223,7 +223,7 @@ class Admin extends CI_Controller {
 	   
 		$data = array(
 			'nama' => $this->input->post('nama'),
-			'nip' => $this->input->post('nip'),
+			'nip_user' => $this->input->post('nip_user'),
 			'jabatan' => $this->input->post('jabatan'),
 			'divisi_user' => $this->input->post('divisi_user'),
 			'id_atasan' => $this->input->post('id_atasan'),
@@ -242,6 +242,40 @@ class Admin extends CI_Controller {
 		redirect(base_url('admin/karyawan'));
 	}
 
+	public function edit_karyawan($id)
+	{
+		$sess_data = $this->session->userdata();
+		$data['edit_karyawan'] = $this->M_simperti->tampil_data_karyawan_edit($id)->result();
+		$data['atasan'] = $this->M_simperti->tampil_data_atasan()->result();
+		$data['divisi'] = $this->M_simperti->tampil_divisi()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('edit_karyawan',$data);
+		$this->load->view('template/footer');
+	}
+
+
+	public function updatekaryawan(){
+	
+		$data = array(
+			'nama' => $this->input->post('nama'),
+			'nip_user' => $this->input->post('nip_user'),
+			'jabatan' => $this->input->post('jabatan'),
+			'divisi_user' => $this->input->post('divisi_user'),
+			'id_atasan' => $this->input->post('id_atasan'),
+			'role' => $this->input->post('role'),
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')		);
+	
+		$where = array(
+			'id_user' => $this->input->post('id_user')
+		);
+
+
+	
+		$this->M_simperti->updatekaryawan($where,$data,'user');
+		$this->load->view('berhasil_ubah_karyawan');
+	}
 
 
 

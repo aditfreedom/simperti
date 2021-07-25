@@ -62,7 +62,7 @@
                     <tr class="nomor text-center">
                         <th scope="row"><?php echo $i; ?></th>
                         <td><?php echo $data->nama; ?></td>
-                        <td><?php echo $data->nip; ?></td>
+                        <td><?php echo $data->nip_user; ?></td>
                         <td><?php echo $data->jabatan; ?></td>
                         <td><?php echo $data->nama_divisi; ?></td>
                         <td><?php echo $data->jabatan_atasan; ?></td>
@@ -96,12 +96,12 @@
 
                     <div class="form-group">
                     <label for="">Nama</label>
-                    <input type="text" name="nama" class="form-control" maxlength="25">
+                    <input type="text" name="nama" class="form-control" maxlength="40">
                     </div>
 
                     <div class="form-group">
                     <label for="">NIP</label>
-                    <input type="text" name="nip" class="form-control" maxlength="15">
+                    <input type="text" name="nip_user" class="form-control" maxlength="15">
                     </div>
 
                     <div class="form-group">

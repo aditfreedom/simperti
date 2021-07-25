@@ -49,6 +49,8 @@ class Hal extends CI_Controller {
              if ($ceklogin == 1) {
                  foreach ($cekloginid as $cek) {
                      $id_user = $cek->id_user;
+					 $divisi_user = $cek->divisi_user;
+
                      $nama = $cek->nama;
                      $nip = $cek->nip;
                      $role = $cek->role;

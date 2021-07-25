@@ -82,8 +82,18 @@ class M_simperti extends CI_Model
         $this->db->delete('user', $where);
     }
 
+    public function tampil_data_karyawan_edit($id)
+    {
+        return $this->db->query("SELECT * FROM user LEFT JOIN atasan ON user.id_atasan = atasan.id_atasan
+                                 LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi WHERE user.id_user='$id'");
+    }
 
-
+    public function updatekaryawan($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->set($data);
+        $this->db->update($table);
+    }
 
 
     // SIMPERTI PROJEK
