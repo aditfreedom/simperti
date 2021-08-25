@@ -277,13 +277,76 @@ class Admin extends CI_Controller {
 		$this->load->view('berhasil_ubah_karyawan');
 	}
 
+	public function izin()
+	{
+		$sess_data = $this->session->userdata();
+		$data['izin'] = $this->M_simperti->tampil_izin()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('izin',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function tambahizin(){
+	   
+		$data = array(
+			'id_user' => $this->input->post('id_user'),
+			'tanggal_izin' => $this->input->post('tanggal_izin'),
+			'tanggal_akhir_izin' => $this->input->post('tanggal_akhir_izin'),
+			'kode_izin' => $this->input->post('kode_izin'),
+			'alasan' => $this->input->post('alasan'),
+			'approve_atasan' => "Sedang Diproses",
+			'approve_tu' => "Sedang Diproses"
+		);
+	
+		$this->M_simperti->tambahizin($data,'izin');
+		$this->load->view('berhasil_tambah_izin');
+	}
+
+	public function edit_izin($id)
+	{
+		$sess_data = $this->session->userdata();
+		$data['edit_izin'] = $this->M_simperti->edit_izin($id)->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('edit_izin',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function updateizin(){
+	
+		$data = array(
+			'id_user' => $this->input->post('id_user'),
+			'tanggal_izin' => $this->input->post('tanggal_izin'),
+			'tanggal_akhir_izin' => $this->input->post('tanggal_akhir_izin'),
+			'kode_izin' => $this->input->post('kode_izin'),
+			'alasan' => $this->input->post('alasan'),
+			'approve_atasan' => "Sedang Diproses",
+			'approve_tu' => "Sedang Diproses"
+		);
+	
+		$where = array(
+			'id' => $this->input->post('id')
+		);
+
+
+	
+		$this->M_simperti->updateizin($where,$data,'izin');
+		$this->load->view('berhasil_ubah_izin');
+	}
+
+	public function hapus_izin($id){
+		$where =    array ('id' => $id);
+		$this->M_simperti->hapus_izin('izin',$where);
+		redirect(base_url('admin/izin'));
+	}
 
 
 
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//simperti projek
 
 

@@ -15,6 +15,7 @@ class M_simperti extends CI_Model
     {
         return $this->db->query("SELECT * FROM divisi");
     }
+    
 
     public function tambahdivisi($data,$table)
     {
@@ -96,6 +97,37 @@ class M_simperti extends CI_Model
     }
 
 
+    public function tampil_izin()
+    {
+        return $this->db->query("SELECT * FROM izin
+                                LEFT JOIN user ON izin.id_user = user.id_user ORDER BY id DESC");
+    }
+
+    public function tambahizin($data,$table)
+    {
+        $this->db->insert($table, $data);
+    }
+
+    public function edit_izin($id)
+    {
+        return $this->db->query("SELECT * FROM izin WHERE id='$id'");
+    }
+
+    public function updateizin($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->set($data);
+        $this->db->update($table);
+    }
+
+    public function hapus_izin($table,$where)
+    {
+        $this->db->delete($table, $where);
+    }
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // SIMPERTI PROJEK
 
 

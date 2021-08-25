@@ -72,7 +72,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url('home/program/');?>" class="nav-link">
+                <a href="<?=base_url('admin/izin/');?>" class="nav-link">
                   <i class="far fa fa-book nav-icon"></i>
                   <p>Izin</p>
                 </a>
