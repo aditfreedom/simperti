@@ -341,6 +341,16 @@ class Admin extends CI_Controller {
 		redirect(base_url('admin/izin'));
 	}
 
+	public function cuti()
+	{
+		$sess_data = $this->session->userdata();
+		$data['cuti'] = $this->M_simperti->tampil_cuti()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('cuti',$data);
+		$this->load->view('template/footer');
+	}
+
 
 
 

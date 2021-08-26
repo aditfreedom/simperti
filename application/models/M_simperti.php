@@ -125,6 +125,12 @@ class M_simperti extends CI_Model
         $this->db->delete($table, $where);
     }
 
+    public function tampil_cuti()
+    {
+        return $this->db->query("SELECT * FROM cuti
+                                LEFT JOIN user ON cuti.id_user = user.id_user ORDER BY id DESC");
+    }
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

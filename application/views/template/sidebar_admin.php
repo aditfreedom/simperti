@@ -78,7 +78,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=base_url('home/aktivitas/');?>" class="nav-link">
+                <a href="<?=base_url('admin/cuti/');?>" class="nav-link">
                   <i class="far fa fa-book nav-icon"></i>
                   <p>Cuti</p>
                 </a>
