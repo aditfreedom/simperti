@@ -8,18 +8,10 @@ class Hal extends CI_Controller {
         parent::__construct();
 		$datauser = $this->session->userdata('login'); 
 		$role=$this->session->userdata('role');
-		if (($datauser == "Berhasil") && ($role == "1") ) {
-			redirect(base_url('kep'));
-		}
-		if (($datauser == "Berhasil") && ($role == "0") ) {
+		if (($datauser == "Berhasil") || ($role == "1") || ($role == "0") || ($role == "2") || ($role == "3")) {
 			redirect(base_url('admin'));
 		}
-		if (($datauser == "Berhasil") && ($role == "2") ) {
-			redirect(base_url('tu'));
-		}
-		if (($datauser == "Berhasil") && ($role == "3") ) {
-			redirect(base_url('user'));
-		}
+
     }
 
 
@@ -52,7 +44,8 @@ class Hal extends CI_Controller {
 					 $divisi_user = $cek->divisi_user;
                      $id_user = $cek->id_user;
                      $nama = $cek->nama;
-                     $nip = $cek->nip;
+                     $nip_user = $cek->nip_user;
+					 $jabatan = $cek->jabatan;
                      $role = $cek->role;
                     }
  
@@ -60,28 +53,18 @@ class Hal extends CI_Controller {
                      $sess_data =  array(
                          'id_user' => $id_user,
                          'nama' => $nama,
-                         'nip' => $nip,
+                         'nip_user' => $nip_user,
+						 'jabatan' => $jabatan,
                          'role' => $role,
                          'login' => 'Berhasil'              
                         );
  
                 //  redirect(base_url('home'));
 
-                if ($sess_data['role'] == "0"){
+                if (($sess_data['role'] == "0") || ($sess_data['role'] == "1") || ($sess_data['role'] == "2") || ($sess_data['role'] == "3")){
                     $this->session->set_userdata($sess_data); 
                     redirect(base_url('admin')); 
-                 }elseif($sess_data['role'] == "1"){
-					$this->session->set_userdata($sess_data); 
-                    redirect(base_url('kep')); 
-				 }
-				 elseif($sess_data['role'] == "2"){
-					$this->session->set_userdata($sess_data); 
-                    redirect(base_url('tu')); 
-				 }
-				 elseif($sess_data['role'] == "3"){
-					$this->session->set_userdata($sess_data); 
-                    redirect(base_url('user')); 
-				 }
+                 }
                  else{
                     $this->load->view('gagallogin');
                 }

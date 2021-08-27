@@ -280,11 +280,22 @@ class Admin extends CI_Controller {
 	public function izin()
 	{
 		$sess_data = $this->session->userdata();
-		$data['izin'] = $this->M_simperti->tampil_izin()->result();
-		$this->load->view('template/header');
-		$this->load->view('template/sidebar_admin',$sess_data);
-		$this->load->view('izin',$data);
-		$this->load->view('template/footer');
+		$role = $this->session->userdata('role');
+		$id = $this->session->userdata('id_user');
+			if ($role=="0") {
+				$data['izin'] = $this->M_simperti->tampil_izin()->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('izin',$data);
+				$this->load->view('template/footer');
+			}
+			if ($role=="3") {
+				$data['izin'] = $this->M_simperti->tampil_izin_sdk($id)->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('izin',$data);
+				$this->load->view('template/footer');
+			}
 	}
 
 	public function tambahizin(){
@@ -344,11 +355,23 @@ class Admin extends CI_Controller {
 	public function cuti()
 	{
 		$sess_data = $this->session->userdata();
-		$data['cuti'] = $this->M_simperti->tampil_cuti()->result();
-		$this->load->view('template/header');
-		$this->load->view('template/sidebar_admin',$sess_data);
-		$this->load->view('cuti',$data);
-		$this->load->view('template/footer');
+		$role = $this->session->userdata('role');
+		$id = $this->session->userdata('id_user');
+		if ($role=="0") {
+			$data['cuti'] = $this->M_simperti->tampil_cuti()->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin',$sess_data);
+			$this->load->view('cuti',$data);
+			$this->load->view('template/footer');
+		}
+		if ($role=="3") {
+			$data['cuti'] = $this->M_simperti->tampil_cuti_sdk($id)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin',$sess_data);
+			$this->load->view('cuti',$data);
+			$this->load->view('template/footer');
+		}
+
 	}
 
 	public function tambahcuti(){
@@ -420,11 +443,24 @@ class Admin extends CI_Controller {
 	public function persetujuan_izin()
 	{
 		$sess_data = $this->session->userdata();
-		$data['persetujuan_izin'] = $this->M_simperti->tampil_persetujuan_izin()->result();
-		$this->load->view('template/header');
-		$this->load->view('template/sidebar_admin',$sess_data);
-		$this->load->view('persetujuan_izin',$data);
-		$this->load->view('template/footer');
+		$role = $this->session->userdata('role');
+		$nip = $this->session->userdata('nip_user');
+		if ($role=="0") {
+			$data['persetujuan_izin'] = $this->M_simperti->tampil_persetujuan_izin()->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin',$sess_data);
+			$this->load->view('persetujuan_izin',$data);
+			$this->load->view('template/footer');
+		}
+		if ($role=="1") {
+			$data['persetujuan_izin'] = $this->M_simperti->tampil_persetujuan_izin_dirkepsek($nip)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin',$sess_data);
+			$this->load->view('persetujuan_izin',$data);
+			$this->load->view('template/footer');
+		}
+		
+		
 	}
 
 	public function edit_approval_izin($id)
@@ -462,11 +498,104 @@ class Admin extends CI_Controller {
 	public function persetujuan_cuti()
 	{
 		$sess_data = $this->session->userdata();
+		$role = $this->session->userdata('role');
+		$nip = $this->session->userdata('nip_user');
+		if ($role=="0") {
 		$data['persetujuan_cuti'] = $this->M_simperti->tampil_persetujuan_cuti()->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin',$sess_data);
 		$this->load->view('persetujuan_cuti',$data);
 		$this->load->view('template/footer');
+		}
+		if ($role=="1") {
+			$data['persetujuan_cuti'] = $this->M_simperti->tampil_persetujuan_cuti_dirkepsek($nip)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin',$sess_data);
+			$this->load->view('persetujuan_cuti',$data);
+			$this->load->view('template/footer');
+			}
+	}
+
+	public function edit_approval_cuti($id)
+	{
+		$sess_data = $this->session->userdata();
+		$data['edit_approval'] = $this->M_simperti->edit_cuti($id)->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('edit_approval_cuti',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function updateapprovalcuti(){
+	
+		$data = array(
+			'id_user' => $this->input->post('id_user'),
+			'jenis_cuti' => $this->input->post('jenis_cuti'),
+			'tanggal_cuti' => $this->input->post('tanggal_cuti'),
+			'tanggal_kembali' => $this->input->post('tanggal_kembali'),
+			'keperluan_cuti' => $this->input->post('keperluan_cuti'),
+			'alamat' => $this->input->post('alamat'),
+			'no_hp' => $this->input->post('no_hp'),
+			'tugas_sekarang' => $this->input->post('tugas_sekarang'),
+			'diserahkan_kepada' => $this->input->post('diserahkan_kepada'),
+			'tanggal_pengajuan' => $this->input->post('tanggal_pengajuan'),
+			'approve_atasan' => $this->input->post('approve_atasan'),
+			'alasan_ditolak' => $this->input->post('alasan_ditolak'),
+			'approve_tu' => $this->input->post('approve_tu')
+		);
+	
+		$where = array(
+			'id' => $this->input->post('id')
+		);
+
+
+	
+		$this->M_simperti->updatecuti($where,$data,'cuti');
+		$this->load->view('berhasil_ubah_approval_cuti');
+	}
+
+	public function status_izin()
+	{
+		$sess_data = $this->session->userdata();
+		$role = $this->session->userdata('role');
+		$id = $this->session->userdata('id_user');
+			if ($role=="0") {
+				$data['status_izin'] = $this->M_simperti->tampil_status_izin()->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('status_izin',$data);
+				$this->load->view('template/footer');
+			}
+			if ($role=="3") {
+				$data['status_izin'] = $this->M_simperti->tampil_status_izin_sdk($id)->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('status_izin',$data);
+				$this->load->view('template/footer');
+			}
+
+
+	}
+
+	public function status_cuti()
+	{
+		$sess_data = $this->session->userdata();
+		$role = $this->session->userdata('role');
+		$id = $this->session->userdata('id_user');
+			if ($role=="0") {
+				$data['status_cuti'] = $this->M_simperti->tampil_status_cuti()->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('status_cuti',$data);
+				$this->load->view('template/footer');
+			}
+			if ($role=="3") {
+				$data['status_cuti'] = $this->M_simperti->tampil_status_cuti_sdk($id)->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('status_cuti',$data);
+				$this->load->view('template/footer');
+			}
 	}
 
 	public function logout(){

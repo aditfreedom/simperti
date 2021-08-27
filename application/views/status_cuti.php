@@ -1,31 +1,15 @@
-<?php
-  $role=$this->session->userdata('role');
-  $hidden_kepsekdir="";
-  $hidden_umum="";
-  $hidden_sdk="";
-
-  if ($role=="1") {
-    $hidden_kepsekdir="hidden";
-  }
-  if ($role=="2") {
-    $hidden_umum="hidden";
-  }
-  if ($role=="3") {
-    $hidden_sdk="hidden";
-  }
-  ?> 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">DAFTAR PENGAJUAN IZIN KARYAWAN</h1>
+                    <h1 class="m-0 text-dark">STATUS PENGAJUAN CUTI KARYAWAN</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">SIMPERTI</a></li>
-                        <li class="breadcrumb-item active">Izin</li>
+                        <li class="breadcrumb-item active">CUTI</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -46,23 +30,50 @@
                     <th scope="col">NO</th>
                     <th scope="col">NAMA KARYAWAN</th>
                     <th scope="col">DIVISI</th>
-                    <th scope="col">JABATAN</th>
                     <th scope="col">APPROVE ATASAN</th>
-                    <th <?=$hidden_kepsekdir?> scope="col">APPROVE TU</th>
+                    <th scope="col">ALASAN (BILA DITOLAK)</th>
+                    <th scope="col">APPROVE TU</th>
                     <th scope="col">AKSI</th>
                 </tr>
             </thead>
             <tbody>
                 <?php $i = 1;
-                foreach ($persetujuan_izin as $data) : ?>
+                foreach ($status_cuti as $data) : 
+                $approve_atasan=$data->approve_atasan;
+                $approve_tu=$data->approve_tu;
+
+                if ($approve_atasan=="Sedang Diproses") {
+                        $btnatasan ="btn-warning";
+                }elseif($approve_atasan=="Diterima"){
+                        $btnatasan ="btn-success";
+                }else{
+                        $btnatasan ="btn-danger";
+                }
+
+                if ($approve_tu=="Sedang Diproses") {
+                    $btntu ="btn-warning";
+            }elseif($approve_tu=="Diterima"){
+                    $btntu ="btn-success";
+            }else{
+                    $btntu ="btn-danger";
+            }
+
+            $persetujuan = $data->approve_tu;
+            $btn_tu="";
+            if ($persetujuan=="Diterima") {
+                $btn_tu="";
+            }else {
+                $btn_tu="hidden";
+            }
+                ?>
                     <tr class="nomor text-center">
                         <th scope="row"><?php echo $i; ?></th>
                         <td><?php echo $data->nama; ?></td>
-                        <td><?php echo $data->nama_divisi; ?></td>
                         <td><?php echo $data->jabatan; ?></td>
-                        <td><a href="#" class="btn btn-warning"><b><?php echo $data->approve_atasan; ?></b></a></td>
-                        <td <?=$hidden_kepsekdir?>><a href="#" class="btn btn-warning"><b><?php echo $data->approve_tu; ?></b></a></td>
-                        <td><?php echo anchor('admin/edit_approval_izin/'.$data->id,'<div class="btn btn-primary btn-sm"><b>EDIT APPROVAL</b></div>')?></td>	
+                        <td><a href="#" class="btn <?=$btnatasan;?>"><b><?php echo $data->approve_atasan; ?></b></a></td>
+                        <td><?php echo $data->alasan_ditolak; ?></td>
+                        <td><a href="#" class="btn <?=$btntu;?>"><b><?php echo $data->approve_tu; ?></b></a></td>
+                        <td <?=$btn_tu?>><?php echo anchor('admin/cetak_izin/'.$data->id,'<div class="btn btn-info btn-sm"><b>CETAK</b></div>')?></td>	
                     </tr>
                     <?php $i++; ?>
                 <?php endforeach; ?>

@@ -100,7 +100,13 @@ class M_simperti extends CI_Model
     public function tampil_izin()
     {
         return $this->db->query("SELECT * FROM izin
-                                LEFT JOIN user ON izin.id_user = user.id_user WHERE approve_atasan ='Sedang Diproses' ORDER BY id DESC");
+                                LEFT JOIN user ON izin.id_user = user.id_user WHERE izin.approve_atasan ='Sedang Diproses' ORDER BY id DESC");
+    }
+
+    public function tampil_izin_sdk($id)
+    {
+        return $this->db->query("SELECT * FROM izin
+                                LEFT JOIN user ON izin.id_user = user.id_user WHERE izin.approve_atasan ='Sedang Diproses' AND user.id_user='$id' ORDER BY id DESC");
     }
 
     public function tambahizin($data,$table)
@@ -129,6 +135,12 @@ class M_simperti extends CI_Model
     {
         return $this->db->query("SELECT * FROM cuti
                                 LEFT JOIN user ON cuti.id_user = user.id_user WHERE approve_atasan ='Sedang Diproses' ORDER BY id DESC");
+    }
+
+    public function tampil_cuti_sdk($id)
+    {
+        return $this->db->query("SELECT * FROM cuti
+                                LEFT JOIN user ON cuti.id_user = user.id_user WHERE cuti.approve_atasan ='Sedang Diproses' AND user.id_user='$id' ORDER BY id DESC");
     }
 
     public function tambahcuti($data,$table)
@@ -167,6 +179,51 @@ class M_simperti extends CI_Model
                                 LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi WHERE approve_atasan ='Sedang Diproses' OR approve_tu='Sedang Diproses' ORDER BY id DESC");
     }
 
+    public function tampil_status_izin()
+    {
+        return $this->db->query("SELECT * FROM izin
+                                LEFT JOIN user ON izin.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi ORDER BY id DESC");
+    }
+
+    public function tampil_status_izin_sdk($id)
+    {
+        return $this->db->query("SELECT * FROM izin
+                                LEFT JOIN user ON izin.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi WHERE user.id_user='$id' AND NOT izin.approve_atasan='Sedang Diproses' ORDER BY id DESC");
+    }
+
+    public function tampil_status_cuti()
+    {
+        return $this->db->query("SELECT * FROM cuti
+                                LEFT JOIN user ON cuti.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi ORDER BY id DESC");
+    }
+
+    public function tampil_status_cuti_sdk($id)
+    {
+        return $this->db->query("SELECT * FROM cuti
+                                LEFT JOIN user ON cuti.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi WHERE user.id_user='$id' AND NOT cuti.approve_atasan='Sedang Diproses'  ORDER BY id DESC");
+    }
+
+    public function tampil_persetujuan_izin_dirkepsek($nip)
+    {
+        return $this->db->query("SELECT * FROM izin
+                                LEFT JOIN user ON izin.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi 
+                                LEFT JOIN atasan ON user.id_atasan = atasan.id_atasan 
+                                WHERE atasan.nip='$nip' AND izin.approve_atasan ='Sedang Diproses' ORDER BY id DESC");
+    }
+
+    public function tampil_persetujuan_cuti_dirkepsek($nip)
+    {
+        return $this->db->query("SELECT * FROM cuti
+                                LEFT JOIN user ON cuti.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi 
+                                LEFT JOIN atasan ON user.id_atasan = atasan.id_atasan 
+                                WHERE atasan.nip='$nip' AND cuti.approve_atasan ='Sedang Diproses' ORDER BY id DESC");
+    }
 
 
 

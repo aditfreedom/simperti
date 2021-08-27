@@ -1,3 +1,19 @@
+<?php
+  $role=$this->session->userdata('role');
+  $hidden_kepsekdir="";
+  $hidden_umum="";
+  $hidden_sdk="";
+
+  if ($role=="1") {
+    $hidden_kepsekdir="hidden";
+  }
+  if ($role=="2") {
+    $hidden_umum="hidden";
+  }
+  if ($role=="3") {
+    $hidden_sdk="hidden";
+  }
+  ?> 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -32,7 +48,7 @@
                     <th scope="col">DIVISI</th>
                     <th scope="col">JABATAN</th>
                     <th scope="col">APPROVE ATASAN</th>
-                    <th scope="col">APPROVE TU</th>
+                    <th <?=$hidden_kepsekdir?> scope="col">APPROVE TU</th>
                     <th scope="col">AKSI</th>
                 </tr>
             </thead>
@@ -45,8 +61,8 @@
                         <td><?php echo $data->nama_divisi; ?></td>
                         <td><?php echo $data->jabatan; ?></td>
                         <td><a href="#" class="btn btn-warning"><b><?php echo $data->approve_atasan; ?></b></a></td>
-                        <td><a href="#" class="btn btn-warning"><b><?php echo $data->approve_tu; ?></b></a></td>
-                        <td><?php echo anchor('admin/edit_approval_izin/'.$data->id,'<div class="btn btn-primary btn-sm"><b>EDIT APPROVAL</b></div>')?></td>	
+                        <td <?=$hidden_kepsekdir?>><a href="#" class="btn btn-warning"><b><?php echo $data->approve_tu; ?></b></a></td>
+                        <td><?php echo anchor('admin/edit_approval_cuti/'.$data->id,'<div class="btn btn-primary btn-sm"><b>EDIT APPROVAL</b></div>')?></td>	
                     </tr>
                     <?php $i++; ?>
                 <?php endforeach; ?>
