@@ -100,7 +100,7 @@ class M_simperti extends CI_Model
     public function tampil_izin()
     {
         return $this->db->query("SELECT * FROM izin
-                                LEFT JOIN user ON izin.id_user = user.id_user ORDER BY id DESC");
+                                LEFT JOIN user ON izin.id_user = user.id_user WHERE approve_atasan ='Sedang Diproses' ORDER BY id DESC");
     }
 
     public function tambahizin($data,$table)
@@ -128,8 +128,45 @@ class M_simperti extends CI_Model
     public function tampil_cuti()
     {
         return $this->db->query("SELECT * FROM cuti
-                                LEFT JOIN user ON cuti.id_user = user.id_user ORDER BY id DESC");
+                                LEFT JOIN user ON cuti.id_user = user.id_user WHERE approve_atasan ='Sedang Diproses' ORDER BY id DESC");
     }
+
+    public function tambahcuti($data,$table)
+    {
+        $this->db->insert($table, $data);
+    }
+
+    public function edit_cuti($id)
+    {
+        return $this->db->query("SELECT * FROM cuti WHERE id='$id'");
+    }
+
+    public function updatecuti($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->set($data);
+        $this->db->update($table);
+    }
+
+    public function hapus_cuti($table,$where)
+    {
+        $this->db->delete($table, $where);
+    }
+
+    public function tampil_persetujuan_izin()
+    {
+        return $this->db->query("SELECT * FROM izin
+                                LEFT JOIN user ON izin.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi WHERE approve_atasan ='Sedang Diproses' OR approve_tu='Sedang Diproses' ORDER BY id DESC");
+    }
+
+    public function tampil_persetujuan_cuti()
+    {
+        return $this->db->query("SELECT * FROM cuti
+                                LEFT JOIN user ON cuti.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi WHERE approve_atasan ='Sedang Diproses' OR approve_tu='Sedang Diproses' ORDER BY id DESC");
+    }
+
 
 
 

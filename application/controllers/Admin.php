@@ -351,9 +351,128 @@ class Admin extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	public function tambahcuti(){
+	   
+		$data = array(
+			'id_user' => $this->input->post('id_user'),
+			'jenis_cuti' => $this->input->post('jenis_cuti'),
+			'tanggal_cuti' => $this->input->post('tanggal_cuti'),
+			'tanggal_kembali' => $this->input->post('tanggal_kembali'),
+			'keperluan_cuti' => $this->input->post('keperluan_cuti'),
+			'alamat' => $this->input->post('alamat'),
+			'no_hp' => $this->input->post('no_hp'),
+			'tugas_sekarang' => $this->input->post('tugas_sekarang'),
+			'diserahkan_kepada' => $this->input->post('diserahkan_kepada'),
+			'tanggal_pengajuan' => $this->input->post('tanggal_pengajuan'),
+			'approve_atasan' => "Sedang Diproses",
+			'alasan_ditolak' => "",
+			'approve_tu' => "Sedang Diproses"
+		);
+	
+		$this->M_simperti->tambahcuti($data,'cuti');
+		$this->load->view('berhasil_tambah_cuti');
+	}
+
+	public function edit_cuti($id)
+	{
+		$sess_data = $this->session->userdata();
+		$data['edit_cuti'] = $this->M_simperti->edit_cuti($id)->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('edit_cuti',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function updatecuti(){
+	
+		$data = array(
+			'id_user' => $this->input->post('id_user'),
+			'jenis_cuti' => $this->input->post('jenis_cuti'),
+			'tanggal_cuti' => $this->input->post('tanggal_cuti'),
+			'tanggal_kembali' => $this->input->post('tanggal_kembali'),
+			'keperluan_cuti' => $this->input->post('keperluan_cuti'),
+			'alamat' => $this->input->post('alamat'),
+			'no_hp' => $this->input->post('no_hp'),
+			'tugas_sekarang' => $this->input->post('tugas_sekarang'),
+			'diserahkan_kepada' => $this->input->post('diserahkan_kepada'),
+			'tanggal_pengajuan' => $this->input->post('tanggal_pengajuan'),
+			'approve_atasan' => "Sedang Diproses",
+			'alasan_ditolak' => "",
+			'approve_tu' => "Sedang Diproses"
+		);
+	
+		$where = array(
+			'id' => $this->input->post('id')
+		);
 
 
+	
+		$this->M_simperti->updatecuti($where,$data,'cuti');
+		$this->load->view('berhasil_ubah_cuti');
+	}
 
+	public function hapus_cuti($id){
+		$where =    array ('id' => $id);
+		$this->M_simperti->hapus_cuti('cuti',$where);
+		redirect(base_url('admin/cuti'));
+	}
+
+	public function persetujuan_izin()
+	{
+		$sess_data = $this->session->userdata();
+		$data['persetujuan_izin'] = $this->M_simperti->tampil_persetujuan_izin()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('persetujuan_izin',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function edit_approval_izin($id)
+	{
+		$sess_data = $this->session->userdata();
+		$data['edit_approval'] = $this->M_simperti->edit_izin($id)->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('edit_approval_izin',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function updateapprovalizin(){
+	
+		$data = array(
+			'id_user' => $this->input->post('id_user'),
+			'tanggal_izin' => $this->input->post('tanggal_izin'),
+			'tanggal_akhir_izin' => $this->input->post('tanggal_akhir_izin'),
+			'kode_izin' => $this->input->post('kode_izin'),
+			'alasan' => $this->input->post('alasan'),
+			'approve_atasan' => $this->input->post('approve_atasan'),
+			'approve_tu' => $this->input->post('approve_tu')
+		);
+	
+		$where = array(
+			'id' => $this->input->post('id')
+		);
+
+
+	
+		$this->M_simperti->updateizin($where,$data,'izin');
+		$this->load->view('berhasil_ubah_approval_izin');
+	}
+
+	public function persetujuan_cuti()
+	{
+		$sess_data = $this->session->userdata();
+		$data['persetujuan_cuti'] = $this->M_simperti->tampil_persetujuan_cuti()->result();
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar_admin',$sess_data);
+		$this->load->view('persetujuan_cuti',$data);
+		$this->load->view('template/footer');
+	}
+
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect(base_url());    
+	}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -947,9 +1066,6 @@ class Admin extends CI_Controller {
 
 		}
 
-		public function logout(){
-			$this->session->sess_destroy();
-			redirect(base_url('dinas/login'));    
-		}
+	
 
 }

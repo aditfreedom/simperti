@@ -53,7 +53,7 @@
    
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-    <p class="text-sm font-weight-bold font-italic">Sistem Informasi Perizinan Dan Cuti Kerja Sekolah Sukma Bangsa Bireuen</p>
+    <p class="text-sm font-weight-bold font-italic">Sistem Informasi Manajemen Perizinan Dan Cuti Kerja Sekolah Sukma Bangsa Bireuen</p>
       </li>
     </ul>
   </nav>

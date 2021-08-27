@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Jul 2021 pada 17.00
--- Versi server: 10.4.18-MariaDB
--- Versi PHP: 7.4.16
+-- Waktu pembuatan: 27 Agu 2021 pada 06.43
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,7 @@ INSERT INTO `atasan` (`id_atasan`, `nama_atasan`, `nip`, `jabatan_atasan`, `tand
 (2, 'CHANDRA NURMANSYAH, S.Si', '10101064', 'Kepala SMP', '-'),
 (3, 'MARINA NOVA WAHYUNI, ST', '12101107', 'Kepala SD', '-'),
 (4, 'KARTIKA HAKIM, S.S., MA', '10151003', 'Kepala SMA', 'a2.png'),
-(10, 'Saiful Anwar', '10081025', 'Asisten Manajer Komplek', 'a1.png');
+(10, 'SAIFUL ANWAR', '10081025', 'Asisten Manajer Komplek', 'a1.png');
 
 -- --------------------------------------------------------
 
@@ -54,20 +54,27 @@ INSERT INTO `atasan` (`id_atasan`, `nama_atasan`, `nip`, `jabatan_atasan`, `tand
 
 CREATE TABLE `cuti` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `jenis_cuti` varchar(50) NOT NULL,
-  `tanggal_cuti` date NOT NULL,
-  `tanggal_kembali` date NOT NULL,
-  `keperluan_cuti` varchar(500) NOT NULL,
-  `alamat` varchar(500) NOT NULL,
-  `no_hp` varchar(15) NOT NULL,
-  `tugas_sekarang` varchar(500) NOT NULL,
-  `diserahkan_kepada` varchar(50) NOT NULL,
-  `tanggal_pengajuan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `approve_atasan` varchar(20) NOT NULL,
-  `alasan_ditolak` varchar(500) NOT NULL,
-  `approve_tu` varchar(20) NOT NULL
+  `id_user` int(11) DEFAULT NULL,
+  `jenis_cuti` varchar(50) DEFAULT NULL,
+  `tanggal_cuti` date DEFAULT NULL,
+  `tanggal_kembali` date DEFAULT NULL,
+  `keperluan_cuti` varchar(500) DEFAULT NULL,
+  `alamat` varchar(500) DEFAULT NULL,
+  `no_hp` varchar(15) DEFAULT NULL,
+  `tugas_sekarang` varchar(500) DEFAULT NULL,
+  `diserahkan_kepada` varchar(50) DEFAULT NULL,
+  `tanggal_pengajuan` date DEFAULT NULL,
+  `approve_atasan` varchar(20) DEFAULT NULL,
+  `alasan_ditolak` varchar(500) DEFAULT NULL,
+  `approve_tu` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `cuti`
+--
+
+INSERT INTO `cuti` (`id`, `id_user`, `jenis_cuti`, `tanggal_cuti`, `tanggal_kembali`, `keperluan_cuti`, `alamat`, `no_hp`, `tugas_sekarang`, `diserahkan_kepada`, `tanggal_pengajuan`, `approve_atasan`, `alasan_ditolak`, `approve_tu`) VALUES
+(2, 1, 'Cuti Menunaikan Ibadah Haji', '2021-08-28', '2021-09-30', 'Umroh/Haji', 'Cot Meurak', '081362059403', '1. Guru TIK SD\r\n2. Laboran\r\n3. Guru Ekskul', 'Adit2', '2021-08-27', 'Sedang Diproses', '', 'Sedang Diproses');
 
 -- --------------------------------------------------------
 
@@ -77,7 +84,7 @@ CREATE TABLE `cuti` (
 
 CREATE TABLE `divisi` (
   `id_divisi` int(11) NOT NULL,
-  `nama_divisi` varchar(5) NOT NULL
+  `nama_divisi` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -88,7 +95,8 @@ INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 (3, 'SD'),
 (4, 'SMP'),
 (5, 'SMA'),
-(6, 'UMUM');
+(6, 'UMUM'),
+(7, 'PUSDATIN');
 
 -- --------------------------------------------------------
 
@@ -98,14 +106,21 @@ INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 
 CREATE TABLE `izin` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `tanggal_izin` date NOT NULL,
-  `tanggal_akhir_izin` date NOT NULL,
-  `kode_izin` varchar(10) NOT NULL,
-  `alasan` varchar(500) NOT NULL,
-  `approve_atasan` varchar(20) NOT NULL,
-  `approve_tu` varchar(20) NOT NULL
+  `id_user` int(11) DEFAULT NULL,
+  `tanggal_izin` date DEFAULT NULL,
+  `tanggal_akhir_izin` date DEFAULT NULL,
+  `kode_izin` varchar(100) DEFAULT NULL,
+  `alasan` varchar(500) DEFAULT NULL,
+  `approve_atasan` varchar(20) DEFAULT NULL,
+  `approve_tu` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `izin`
+--
+
+INSERT INTO `izin` (`id`, `id_user`, `tanggal_izin`, `tanggal_akhir_izin`, `kode_izin`, `alasan`, `approve_atasan`, `approve_tu`) VALUES
+(1, 1, '2021-08-27', '2021-08-28', '01 (Sakit/Sick Leave)', 'Sakit', 'Diterima', 'Diterima');
 
 -- --------------------------------------------------------
 
@@ -130,7 +145,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `nip_user`, `jabatan`, `divisi_user`, `id_atasan`, `role`, `username`, `password`) VALUES
-(1, 'Aditya Aziz Fikhri, S.Tr.Kom', '10186018', 'Laboran Komputer', '3', 1, '0', '10186018', '10186018'),
+(1, 'Aditya Aziz Fikhri, S.Tr.Kom', '10186018', 'Laboran Komputer', '7', 1, '0', '10186018', '10186018'),
 (3, 'FACHRURRAZI, MA', '10091053', 'Direktur', '6', 1, '1', '10091053', '10091053'),
 (6, 'Kartika Hakim, S.S.,MA', '10151003', 'Kepala SMA', '5', 1, '1', '10151003', '10151003'),
 (7, 'CHANDRA NURMANSYAH, S.Si', '10101064', 'Kepala SMP', '4', 1, '1', '10101064', '10101064'),
@@ -185,19 +200,19 @@ ALTER TABLE `atasan`
 -- AUTO_INCREMENT untuk tabel `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `divisi`
 --
 ALTER TABLE `divisi`
-  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `izin`
 --
 ALTER TABLE `izin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

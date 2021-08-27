@@ -82,9 +82,11 @@
                     <div class="form-group">
                     <label for="">JENIS CUTI</label>
                     <select name="jenis_cuti" class="form-control" required>
-                        <option value="Cuti Melahirkan">Cuti Melahirkan</option>
-                        <option value="Cuti Gugur Kandungan">Cuti Gugur Kandungan</option>
-                        <option value="Lainnya">Lainnya</option>
+                        <option value="Cuti Tahunan">Cuti Tahunan</option>
+                        <option value="Cuti Melahirkan/Gugur Kandungan">Cuti Melahirkan/Gugur Kandungan</option>
+                        <option value="Cuti Menunaikan Ibadah Haji">Cuti Menunaikan Ibadah Haji</option>
+                        <option value="Cuti Diluar Tanggungan Perusahaan">Cuti Diluar Tanggungan Perusahaan</option>
+                        <option value="Cuti Lain-Lain">Cuti Lain-Lain</option>
                     </select>
                     </div>
                     <div class="form-group">
@@ -117,12 +119,12 @@
                     </div>
                     <div class="form-group">
                     <label for="">DISERAHKAN KEPADA</label>
-                    <input type="text" name="no_hp" class="form-control" required>
+                    <input type="text" name="diserahkan_kepada" class="form-control" required>
                     </div>
                     <hr>
                     <div class="form-group">
                     <label for="">TANGGAL PENGAJUAN CUTI</label>
-                    <input type="text" name="tanggal_pengajuan" class="form-control" required>
+                    <input type="date" name="tanggal_pengajuan" class="form-control" required>
                     </div>                 
                     <div class="form-group">
                     <button type="submit" class="btn text-bold btn-primary form-control" style="height:40px;">SIMPAN DATA</button>                    

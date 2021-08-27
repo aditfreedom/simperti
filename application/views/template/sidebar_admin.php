@@ -96,13 +96,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url('user/registrasi_ulang/');?>" class="nav-link">
+                <a href="<?=base_url('admin/persetujuan_izin/');?>" class="nav-link">
                   <i class="far fa fa-clipboard-check nav-icon"></i>
                   <p>Izin</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?=base_url('user/cetakdaftarulang/');?>" class="nav-link">
+                <a href="<?=base_url('admin/persetujuan_cuti/');?>" class="nav-link">
                   <i class="far fa fa-clipboard-check nav-icon"></i>
                   <p>Cuti</p>
                 </a>
@@ -135,7 +135,7 @@
               </li>     
 
           <li class="nav-item">
-            <a href="<?= base_url('home/logout')?>" class="nav-link bg-danger">
+            <a href="<?= base_url('admin/logout')?>" class="nav-link bg-danger">
               <i class="nav-icon fa fa-sign-out-alt"></i>
               <p>
                 Logout
