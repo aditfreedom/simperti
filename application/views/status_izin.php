@@ -1,3 +1,19 @@
+<?php
+  $role=$this->session->userdata('role');
+  $hidden_kepsekdir="";
+  $hidden_umum="";
+  $hidden_sdk="";
+
+  if ($role=="1") {
+    $hidden_kepsekdir="hidden";
+  }
+  if ($role=="2") {
+    $hidden_umum="hidden";
+  }
+  if ($role=="3") {
+    $hidden_sdk="hidden";
+  }
+  ?> 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -31,6 +47,7 @@
                     <th scope="col">NAMA KARYAWAN</th>
                     <th scope="col">DIVISI</th>
                     <th scope="col">KODE IZIN</th>
+                    <th <?=$hidden_kepsekdir?> <?=$hidden_sdk?> scope="col">TANGGAL IZIN</th>
                     <th scope="col">APPROVE ATASAN</th>
                     <th scope="col">APPROVE TU</th>
                     <th scope="col">AKSI</th>
@@ -65,14 +82,23 @@
             }else {
                 $btn_tu="hidden";
             }
+
+            $persetujuan_atasan = $data->approve_atasan;
+            $btn_atasan="";
+            if ($persetujuan_atasan=="Diterima") {
+                $btn_atasan="";
+            }else {
+                $btn_atasan="hidden";
+            }
                 ?>
                     <tr class="nomor text-center">
                         <th scope="row"><?php echo $i; ?></th>
                         <td><?php echo $data->nama; ?></td>
                         <td><?php echo $data->jabatan; ?></td>
                         <td><?php echo $data->kode_izin; ?></td>
+                        <td <?=$hidden_kepsekdir?> <?=$hidden_sdk?>>(<?php echo $data->tanggal_izin; ?>) <b>s.d</b> (<?php echo $data->tanggal_akhir_izin; ?>)</td>
                         <td><a href="#" class="btn <?=$btnatasan;?>"><b><?php echo $data->approve_atasan; ?></b></a></td>
-                        <td><a href="#" class="btn <?=$btntu;?>"><b><?php echo $data->approve_tu; ?></b></a></td>
+                        <td><a href="#" class="btn <?=$btntu;?>" <?=$btn_atasan;?>><b><?php echo $data->approve_tu; ?></b></a></td>
                         <td <?=$btn_tu;?>><?php echo anchor('admin/cetak_izin/'.$data->id,'<div class="btn btn-info btn-sm"><b>CETAK</b></div>')?></td>	
                     </tr>
                     <?php $i++; ?>

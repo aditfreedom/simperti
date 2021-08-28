@@ -459,6 +459,14 @@ class Admin extends CI_Controller {
 			$this->load->view('persetujuan_izin',$data);
 			$this->load->view('template/footer');
 		}
+
+		if ($role=="2") {
+			$data['persetujuan_izin'] = $this->M_simperti->tampil_persetujuan_izin_tu()->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin',$sess_data);
+			$this->load->view('persetujuan_izin',$data);
+			$this->load->view('template/footer');
+		}
 		
 		
 	}
@@ -514,6 +522,13 @@ class Admin extends CI_Controller {
 			$this->load->view('persetujuan_cuti',$data);
 			$this->load->view('template/footer');
 			}
+			if ($role=="2") {
+				$data['persetujuan_cuti'] = $this->M_simperti->tampil_persetujuan_cuti_tu()->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('persetujuan_cuti',$data);
+				$this->load->view('template/footer');
+				}
 	}
 
 	public function edit_approval_cuti($id)
@@ -573,6 +588,13 @@ class Admin extends CI_Controller {
 				$this->load->view('status_izin',$data);
 				$this->load->view('template/footer');
 			}
+			if ($role=="2") {
+				$data['status_izin'] = $this->M_simperti->tampil_status_izin_tu()->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('status_izin',$data);
+				$this->load->view('template/footer');
+			}
 
 
 	}
@@ -591,6 +613,14 @@ class Admin extends CI_Controller {
 			}
 			if ($role=="3") {
 				$data['status_cuti'] = $this->M_simperti->tampil_status_cuti_sdk($id)->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('status_cuti',$data);
+				$this->load->view('template/footer');
+			}
+
+			if ($role=="2") {
+				$data['status_cuti'] = $this->M_simperti->tampil_status_cuti_tu()->result();
 				$this->load->view('template/header');
 				$this->load->view('template/sidebar_admin',$sess_data);
 				$this->load->view('status_cuti',$data);

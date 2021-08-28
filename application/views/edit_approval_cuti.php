@@ -89,7 +89,7 @@
                     </div>
                     <hr> 
                     <h5 class="text-danger">KONFIRMASI APPROVAL :</h5>
-                    <div class="form-group">
+                    <div class="form-group" <?=$hidden_umum?>>
                     <label for="">KONFIRMASI APPROVAL ATASAN</label>
                     <select name="approve_atasan" class="form-control" >
                         <option selected hidden value="<?=$data->approve_atasan?>"><?=$data->approve_atasan?></option>
@@ -98,7 +98,7 @@
                         <option value="Ditolak">Ditolak</option>
                     </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" <?=$hidden_umum?>>
                     <label for="">ALASAN PENOLAKAN (APABILA DITOLAK)</label>
                     <textarea name="alasan_ditolak" cols="30" rows="5" class="form-control"></textarea>
                     </div>

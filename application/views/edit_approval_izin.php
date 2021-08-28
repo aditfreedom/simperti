@@ -61,7 +61,7 @@
             <label for="">ALASAN</label>
             <input type="text" name="alasan" class="form-control" value="<?=$data->alasan?>" readonly>
             </div>
-            <div class="form-group">
+            <div class="form-group" <?=$hidden_umum?>>
                     <label for="">KONFIRMASI APPROVAL ATASAN</label>
                     <select name="approve_atasan" class="form-control" >
                         <option selected hidden value="<?=$data->approve_atasan?>"><?=$data->approve_atasan?></option>
