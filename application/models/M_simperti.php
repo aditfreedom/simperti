@@ -201,6 +201,14 @@ class M_simperti extends CI_Model
                                 LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi WHERE user.id_user='$id' AND NOT izin.approve_atasan='Sedang Diproses' ORDER BY id DESC");
     }
 
+    public function tampil_status_izin_sdk_report($id)
+    {
+        return $this->db->query("SELECT * FROM izin
+                                LEFT JOIN user ON izin.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi 
+                                LEFT JOIN atasan ON user.id_atasan = atasan.id_atasan WHERE user.id_user='$id' AND NOT izin.approve_atasan='Sedang Diproses' ORDER BY id DESC");
+    }
+
     public function tampil_status_cuti()
     {
         return $this->db->query("SELECT * FROM cuti
