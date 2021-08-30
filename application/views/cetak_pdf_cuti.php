@@ -63,7 +63,7 @@
   </tr>
   <tr>
     <td colspan="5">Tugas / Pekerjaan yang sedang dijalankan : <br><?=$data->tugas_sekarang?></td>
-    <td style="text-align:center;">Diserahkan Kepada :<br><br><br><?=$data->diserahkan_kepada?></td>
+    <td style="text-align:center;">Diserahkan Kepada<br><br><br><?=$data->diserahkan_kepada?></td>
   </tr>
   <tr>
     <td colspan="2">Diajukan oleh,<br>Karyawan<br><br><br><br><br><b><?=$data->nama?></b><br>Tanggal : <?=$data->tanggal_pengajuan?></td>
