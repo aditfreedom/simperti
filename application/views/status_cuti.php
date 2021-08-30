@@ -99,7 +99,7 @@
                         <td><a href="#" class="btn <?=$btnatasan;?>"><b><?php echo $data->approve_atasan; ?></b></a></td>
                         <td><?php echo $data->alasan_ditolak; ?></td>
                         <td><a href="#" class="btn <?=$btntu;?>" <?=$btn_atasan?>><b><?php echo $data->approve_tu; ?></b></a></td>
-                        <td <?=$btn_tu?>><?php echo anchor('admin/cetak_izin/'.$data->id,'<div class="btn btn-info btn-sm"><b>CETAK</b></div>')?></td>	
+                        <td <?=$btn_tu?>><?php echo anchor('admin/cetak_cuti/'.$data->id,'<div class="btn btn-info btn-sm"><b>CETAK</b></div>')?></td>	
                     </tr>
                     <?php $i++; ?>
                 <?php endforeach; ?>
