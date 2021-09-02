@@ -289,6 +289,20 @@ class Admin extends CI_Controller {
 				$this->load->view('izin',$data);
 				$this->load->view('template/footer');
 			}
+			if ($role=="1") {
+				$data['izin'] = $this->M_simperti->tampil_izin_sdk($id)->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('izin',$data);
+				$this->load->view('template/footer');
+			}
+			if ($role=="2") {
+				$data['izin'] = $this->M_simperti->tampil_izin_sdk($id)->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('izin',$data);
+				$this->load->view('template/footer');
+			}
 			if ($role=="3") {
 				$data['izin'] = $this->M_simperti->tampil_izin_sdk($id)->result();
 				$this->load->view('template/header');
@@ -359,6 +373,20 @@ class Admin extends CI_Controller {
 		$id = $this->session->userdata('id_user');
 		if ($role=="0") {
 			$data['cuti'] = $this->M_simperti->tampil_cuti()->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin',$sess_data);
+			$this->load->view('cuti',$data);
+			$this->load->view('template/footer');
+		}
+		if ($role=="1") {
+			$data['cuti'] = $this->M_simperti->tampil_cuti_sdk($id)->result();
+			$this->load->view('template/header');
+			$this->load->view('template/sidebar_admin',$sess_data);
+			$this->load->view('cuti',$data);
+			$this->load->view('template/footer');
+		}
+		if ($role=="2") {
+			$data['cuti'] = $this->M_simperti->tampil_cuti_sdk($id)->result();
 			$this->load->view('template/header');
 			$this->load->view('template/sidebar_admin',$sess_data);
 			$this->load->view('cuti',$data);
@@ -581,6 +609,13 @@ class Admin extends CI_Controller {
 				$this->load->view('status_izin',$data);
 				$this->load->view('template/footer');
 			}
+			if ($role=="1") {
+				$data['status_izin'] = $this->M_simperti->tampil_status_izin_sdk($id)->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('status_izin',$data);
+				$this->load->view('template/footer');
+			}
 			if ($role=="3") {
 				$data['status_izin'] = $this->M_simperti->tampil_status_izin_sdk($id)->result();
 				$this->load->view('template/header');
@@ -606,6 +641,13 @@ class Admin extends CI_Controller {
 		$id = $this->session->userdata('id_user');
 			if ($role=="0") {
 				$data['status_cuti'] = $this->M_simperti->tampil_status_cuti()->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('status_cuti',$data);
+				$this->load->view('template/footer');
+			}
+			if ($role=="1") {
+				$data['status_cuti'] = $this->M_simperti->tampil_status_cuti_sdk($id)->result();
 				$this->load->view('template/header');
 				$this->load->view('template/sidebar_admin',$sess_data);
 				$this->load->view('status_cuti',$data);

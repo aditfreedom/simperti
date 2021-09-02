@@ -39,9 +39,9 @@
               <div class="form-group">
                 <label class="font-weight-bold">LOGIN SEBAGAI :</label>
                 <select class="form-control" name="role">
-                <option  value="1">DIREKTUR/KEPALA SEKOLAH</option>
+                <option  value="1">DIREKTUR/KEPALA SEKOLAH/KABAG</option>
                 <option  value="2">KEPALA TU</option>
-                <option  value="3">SDK/NON SDK</option>
+                <option  value="3">SDK/NON SDK/HONORER</option>
                 <option  value="0">ADMIN</option>
                 </select>
                 </div>

@@ -80,7 +80,7 @@
          
 
           <li class="nav-item has-treeview menu-close">
-            <a href="#" class="nav-link" <?=$hidden_kepsekdir?> <?=$hidden_umum?>>
+            <a href="#" class="nav-link" >
               <i class="nav-icon fas fa-book-reader"></i>
               <p>
                 Pengajuan
@@ -127,7 +127,7 @@
               </ul>
               </li>     
 
-          <li class="nav-item has-treeview menu-close" <?=$hidden_kepsekdir?>>
+          <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-info-circle"></i>
               <p>
