@@ -489,7 +489,7 @@ class Admin extends CI_Controller {
 		}
 
 		if ($role=="2") {
-			$data['persetujuan_izin'] = $this->M_simperti->tampil_persetujuan_izin_tu()->result();
+			$data['persetujuan_izin'] = $this->M_simperti->tampil_persetujuan_izin_tu($nip)->result();
 			$this->load->view('template/header');
 			$this->load->view('template/sidebar_admin',$sess_data);
 			$this->load->view('persetujuan_izin',$data);
@@ -551,7 +551,7 @@ class Admin extends CI_Controller {
 			$this->load->view('template/footer');
 			}
 			if ($role=="2") {
-				$data['persetujuan_cuti'] = $this->M_simperti->tampil_persetujuan_cuti_tu()->result();
+				$data['persetujuan_cuti'] = $this->M_simperti->tampil_persetujuan_cuti_tu($nip)->result();
 				$this->load->view('template/header');
 				$this->load->view('template/sidebar_admin',$sess_data);
 				$this->load->view('persetujuan_cuti',$data);

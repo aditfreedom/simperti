@@ -83,7 +83,7 @@
 
                     <div class="form-group">
                     <label for="">JABATAN</label>
-                    <input type="text" name="jabatan_atasan" class="form-control" maxlength="15">
+                    <input type="text" name="jabatan_atasan" class="form-control" maxlength="60">
                     </div>
 
                     <div class="form-group">
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="form-group">
-                    <button type="submit" class="btn text-bold btn-primary form-control" style="height:40px;">SIMPAN DATA SISWA</button>                    
+                    <button type="submit" class="btn text-bold btn-primary form-control" style="height:40px;">SIMPAN DATA ATASAN</button>                    
                     </div>
 
                 </form>

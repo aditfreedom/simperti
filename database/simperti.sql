@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Sep 2021 pada 20.30
--- Versi server: 10.4.18-MariaDB
--- Versi PHP: 7.4.16
+-- Waktu pembuatan: 03 Sep 2021 pada 05.37
+-- Versi server: 10.4.14-MariaDB
+-- Versi PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,9 +45,10 @@ INSERT INTO `atasan` (`id_atasan`, `nama_atasan`, `nip`, `jabatan_atasan`, `tand
 (3, 'MARINA NOVA WAHYUNI, ST', '12101107', 'KEPALA SD', 'QR_SD.png'),
 (4, 'KARTIKA HAKIM, S.S., M.A.', '10151003', 'KEPALA SMA', 'QR_SMA.png'),
 (10, 'SAIFUL ANWAR', '10081067', 'ASS. MANKOM', 'QR_MANKOM.png'),
-(11, 'MAINA SARA, M.A.', '10061010', 'KEPALA TU', 'QR_TU.png'),
+(11, 'MAINA SARA, M.A.', '11071018', 'KEPALA TU', 'QR_TU.png'),
 (12, 'SITI ALPIYAH, S.IP.', '10061007', 'KEPALA PERPUSTAKAAN', 'QR_PERPUSTAKAAN.png'),
-(13, 'HIJRIATI MEUTIA, S.Psi., M.A.', '10141003', 'KA. KONSELOR', 'QR_KONSELOR.png');
+(13, 'HIJRIATI MEUTIA, S.Psi., M.A.', '10141003', 'KA. KONSELOR', 'QR_KONSELOR.png'),
+(14, 'VICTOR YASADHANA', '11071017', 'DIREKTUR PENDIDIKAN', 'QR_DIREKTURPENDIDIKAN.png');
 
 -- --------------------------------------------------------
 
@@ -71,16 +72,6 @@ CREATE TABLE `cuti` (
   `alasan_ditolak` varchar(500) DEFAULT NULL,
   `approve_tu` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `cuti`
---
-
-INSERT INTO `cuti` (`id`, `id_user`, `jenis_cuti`, `tanggal_cuti`, `tanggal_kembali`, `keperluan_cuti`, `alamat`, `no_hp`, `tugas_sekarang`, `diserahkan_kepada`, `tanggal_pengajuan`, `approve_atasan`, `alasan_ditolak`, `approve_tu`) VALUES
-(4, 14, 'Cuti Tahunan', '2021-09-02', '2021-09-30', '-', '-', '-', 'a\r\na\r\na', 'aaaa', '2021-09-30', 'Diterima', '', 'Diterima'),
-(5, 15, 'Cuti Tahunan', '2021-09-02', '2021-09-02', '-', '-', '-', '-\r\n-\r\n-', 'aaaa', '2021-09-02', 'Diterima', '', 'Sedang Diproses'),
-(6, 55, 'Cuti Lain-Lain', '2021-09-02', '2021-12-09', 'Operasi', '-', '-', '-', 'Syeh', '2021-09-02', 'Diterima', '', 'Diterima'),
-(7, 47, 'Cuti Melahirkan/Gugur Kandungan', '2021-09-02', '2021-12-02', 'Operasi', '-', '-', '-', '-', '2021-09-02', 'Sedang Diproses', '', 'Sedang Diproses');
 
 -- --------------------------------------------------------
 
@@ -124,17 +115,6 @@ CREATE TABLE `izin` (
   `approve_tu` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `izin`
---
-
-INSERT INTO `izin` (`id`, `id_user`, `tanggal_izin`, `tanggal_akhir_izin`, `kode_izin`, `alasan`, `approve_atasan`, `approve_tu`) VALUES
-(3, 12, '2021-09-02', '2021-09-02', '05 (Tidak Masuk/Absent)', 'Sakit', 'Sedang Diproses', 'Sedang Diproses'),
-(4, 14, '2021-09-02', '2021-09-02', '01 (Sakit/Sick Leave)', 'Sakit', 'Diterima', 'Diterima'),
-(5, 15, '2021-09-02', '2021-09-02', '05 (Tidak Masuk/Absent)', 'Sakit', 'Diterima', 'Diterima'),
-(6, 55, '2021-09-02', '2021-09-02', '05 (Tidak Masuk/Absent)', 'Sakit', 'Diterima', 'Diterima'),
-(7, 47, '2021-09-02', '2021-09-02', '05 (Tidak Masuk/Absent)', 'Sakit', 'Sedang Diproses', 'Sedang Diproses');
-
 -- --------------------------------------------------------
 
 --
@@ -159,7 +139,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama`, `nip_user`, `jabatan`, `divisi_user`, `id_atasan`, `role`, `username`, `password`) VALUES
 (11, 'Aditya Aziz Fikhri, S.Tr.Kom', '10186018', 'Laboran Komputer', '7', 1, '0', '10186018', '10186018'),
-(12, 'FACHRURRAZI, MA', '10091053', 'Direktur', '6', 1, '1', '10091053', '10091053'),
+(12, 'FACHRURRAZI, MA', '10091053', 'Direktur', '6', 14, '1', '10091053', '10091053'),
 (13, 'Kartika Hakim, S.S.,MA', '10151003', 'Kepala SMA', '5', 1, '1', '10151003', '10151003'),
 (14, 'CHANDRA NURMANSYAH, S.Si', '10101064', 'Kepala SMP', '4', 1, '1', '10101064', '10101064'),
 (15, 'Maina Sara, MA', '11071018', 'Kepala TU', '6', 1, '2', '11071018', '11071018'),
@@ -240,7 +220,8 @@ INSERT INTO `user` (`id_user`, `nama`, `nip_user`, `jabatan`, `divisi_user`, `id
 (90, 'Sabri', '10206041', 'Guru Tahsin', '4', 2, '3', '10206041', '10206041'),
 (91, 'Turangga Restu Ilvaly, S.Pd', '10196026', 'Guru Olahraga SD', '3', 3, '3', '10196026', '10196026'),
 (92, 'Idawati, S. Pd.I.', '10196031', 'Assisten Guru SD', '3', 3, '3', '10196031', '10196031'),
-(93, 'Dewi Rahmayanti, S.Pd.I', '10206056', 'Guru B. Inggris', '4', 2, '3', '10206056', '10206056');
+(93, 'Dewi Rahmayanti, S.Pd.I', '10206056', 'Guru B. Inggris', '4', 2, '3', '10206056', '10206056'),
+(138, 'VICTOR YASADHANA', '11071017', 'DIREKTUR PENDIDIKAN', '6', 14, '1', '11071017', '11071017');
 
 --
 -- Indexes for dumped tables
@@ -284,7 +265,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `atasan`
 --
 ALTER TABLE `atasan`
-  MODIFY `id_atasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_atasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `cuti`
@@ -308,7 +289,7 @@ ALTER TABLE `izin`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

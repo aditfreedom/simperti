@@ -76,8 +76,9 @@
             }
 
             $persetujuan = $data->approve_tu;
+            $persetujuan2 = $data->approve_atasan;
             $btn_tu="";
-            if ($persetujuan=="Diterima") {
+            if ($persetujuan=="Diterima" && $persetujuan2!="Ditolak") {
                 $btn_tu="";
             }else {
                 $btn_tu="hidden";

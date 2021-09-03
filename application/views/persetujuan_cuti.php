@@ -47,7 +47,7 @@
                     <th scope="col">NAMA KARYAWAN</th>
                     <th scope="col">DIVISI</th>
                     <th scope="col">JABATAN</th>
-                    <th <?=$hidden_umum?> scope="col">APPROVE ATASAN</th>
+                    <th scope="col">APPROVE ATASAN</th>
                     <th <?=$hidden_kepsekdir?> scope="col">APPROVE TU</th>
                     <th scope="col">AKSI</th>
                 </tr>
@@ -60,7 +60,7 @@
                         <td><?php echo $data->nama; ?></td>
                         <td><?php echo $data->nama_divisi; ?></td>
                         <td><?php echo $data->jabatan; ?></td>
-                        <td <?=$hidden_umum?>><a href="#" class="btn btn-warning"><b><?php echo $data->approve_atasan; ?></b></a></td>
+                        <td ><a href="#" class="btn btn-warning"><b><?php echo $data->approve_atasan; ?></b></a></td>
                         <td <?=$hidden_kepsekdir?>><a href="#" class="btn btn-warning"><b><?php echo $data->approve_tu; ?></b></a></td>
                         <td><?php echo anchor('admin/edit_approval_cuti/'.$data->id,'<div class="btn btn-primary btn-sm"><b>EDIT APPROVAL</b></div>')?></td>	
                     </tr>

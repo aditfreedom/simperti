@@ -106,7 +106,7 @@
 
                     <div class="form-group">
                     <label for="">JABATAN</label>
-                    <input type="text" name="jabatan" class="form-control" maxlength="15">
+                    <input type="text" name="jabatan" class="form-control" maxlength="60">
                     </div>
 
                     <div class="form-group">
