@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">EDIT PENGAJUAN IZIN KARYAWAN</h1>
+                    <h1 class="m-0 text-dark">REKAP IZIN KARYAWAN</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">SIMPERTI</a></li>
-                        <li class="breadcrumb-item active">Izin</li>
+                        <li class="breadcrumb-item active">Rekap Izin</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -19,46 +19,26 @@
     <div class="content">
        
     <div class="container">
-        <?php foreach ($edit_izin as $data) : ?>
-            <form method="post" action="<?php echo base_url('admin/updateizin'); ?>">
-            <div class="form-group" hidden>
-            <label for="">ID </label>
-            <input type="text" name="id" class="form-control" value="<?=$data->id?>">
-            </div>
-            <div class="form-group" hidden>
-            <label for="">ID USER</label>
-            <input type="text" name="id_user" class="form-control" value="<?=$data->id_user?>">
-            </div>
+            <form method="post" action="<?php echo base_url('admin/tampil_rekap_izin'); ?>">
             <div class="form-group">
             <label for="">TANGGAL MULAI IZIN</label>
-            <input type="date" name="tanggal_izin" class="form-control" value="<?=$data->tanggal_izin?>" required>
+            <input type="date" name="tanggal_izin" class="form-control" required>
             </div>
             <div class="form-group">
             <label for="">TANGGAL BERAKHIR IZIN</label>
-            <input type="date" name="tanggal_akhir_izin" class="form-control" value="<?=$data->tanggal_akhir_izin?>" required>
+            <input type="date" name="tanggal_akhir_izin" class="form-control" required>
             </div>
             <div class="form-group">
-            <label for="">KODE IZIN</label>
-            <select name="kode_izin" class="form-control" required>
-                <option selected hidden value="<?=$data->kode_izin?>"><?=$data->kode_izin?></option>
-                <option value="01 : Izin Sakit/Sick Leave">01 : Izin Sakit/Sick Leave</option>
-                        <option value="02-a  Izin: Tidak Masuk (Acara Keluarga)">02-a : Izin Tidak Masuk (Acara Keluarga)</option>
-                        <option value="02-b : Izin Tidak Masuk (Pelatihan/Mendampingi Siswa)">02-b : Izin Tidak Masuk (Pelatihan/Mendampingi Siswa)</option>
-                        <option value="02-c : Izin Tidak Masuk (Sakit Anggota Keluarga)">02-c : Izin Tidak Masuk (Sakit Anggota Keluarga)</option>
-                        <option value="02-d : Izin Tidak Masuk (Meninggal Anggota Keluarga)">02-d : Izin Tidak Masuk (Meninggal Anggota Keluarga)</option>
-                        <option value="03 : Izin Pulang Lebih Cepat/Datang Terlambat">03 : Izin Pulang Lebih Cepat/Datang Terlambat</option>
-                        <option value="04 : Lainnya">04 : Lainnya</option>
+            <label for="">DIVISI</label>
+            <select name="divisi" class="form-control" required>
+                <?php foreach ($rekap_izin as $data):?>
+                <option value="<?=$data->id_divisi?>"><?=$data->nama_divisi?></option>
+                <?php endforeach?>
             </select>
-            </div>
+                </div>
             <div class="form-group">
-            <label for="">ALASAN</label>
-            <input type="text" name="alasan" class="form-control" value="<?=$data->alasan?>" required>
-            </div>
-
-            <div class="form-group">
-            <button type="submit" class="btn text-bold btn-primary form-control" style="height:40px;">EDIT DATA</button>                    
+            <button type="submit" class="btn text-bold btn-primary form-control" style="height:40px;">CARI DATA</button>                    
         </form>
-                <?php endforeach; ?>
         </div>
 
     </div>

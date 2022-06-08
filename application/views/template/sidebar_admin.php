@@ -127,7 +127,7 @@
               </ul>
               </li>     
 
-          <li class="nav-item has-treeview menu-close">
+          <li class="nav-item has-treeview menu-close" >
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-info-circle"></i>
               <p>
@@ -146,6 +146,30 @@
                 <a href="<?=base_url('admin/status_cuti/');?>" class="nav-link">
                   <i class="far fa fa-id-card  nav-icon"></i>
                   <p>Cuti</p>
+                </a>
+              </li>
+              </ul>
+              </li>     
+
+              <li class="nav-item has-treeview menu-close" <?=$hidden_sdk?>>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Rekap
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=base_url('admin/rekap_izin/');?>" class="nav-link">
+                  <i class="far fa fa-id-card  nav-icon"></i>
+                  <p>Rekap Izin</p>
+                </a>
+              </li>
+              <li class="nav-item" hidden>
+                <a href="<?=base_url('#');?>" class="nav-link">
+                  <i class="far fa fa-id-card  nav-icon"></i>
+                  <p>Rekap Cuti</p>
                 </a>
               </li>
               </ul>

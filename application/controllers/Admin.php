@@ -704,6 +704,29 @@ class Admin extends CI_Controller {
 				$this->dompdf->stream("Form Cuti Karyawan.pdf", array('Attachment' =>0));
 	}
 
+
+	public function rekap_izin()
+	{
+		$sess_data = $this->session->userdata();
+				$data['rekap_izin'] = $this->M_simperti->tampil_divisi()->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('rekap_izin',$data);
+				$this->load->view('template/footer');
+	}
+
+	public function tampil_rekap_izin()
+	{
+				$sess_data = $this->session->userdata();
+				$tanggal_izin = $this->input->post('tanggal_izin');
+				$tanggal_akhir_izin = $this->input->post('tanggal_akhir_izin');
+				$divisi = $this->input->post('divisi');
+				$data['tampil_rekap_izin'] = $this->M_simperti->tampil_rekap_izin($tanggal_izin,$tanggal_akhir_izin,$divisi)->result();
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar_admin',$sess_data);
+				$this->load->view('tampil_rekap_izin',$data);
+				$this->load->view('template/footer');
+	}
 	
 
 	public function logout(){

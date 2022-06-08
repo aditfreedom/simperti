@@ -276,6 +276,15 @@ class M_simperti extends CI_Model
     }
 
 
+    public function tampil_rekap_izin($tanggal1,$tanggal2,$divisi)
+    {
+        return $this->db->query("SELECT * FROM izin 
+                                LEFT JOIN user ON izin.id_user = user.id_user 
+                                LEFT JOIN divisi ON user.divisi_user = divisi.id_divisi 
+                                 WHERE (izin.tanggal_izin >='$tanggal1' AND izin.tanggal_akhir_izin <='$tanggal2') AND user.divisi_user='$divisi' AND
+                                 approve_atasan = 'Diterima' AND approve_tu = 'Diterima' ");
+    }
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // SIMPERTI PROJEK
