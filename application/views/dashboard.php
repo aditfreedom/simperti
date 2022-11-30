@@ -19,7 +19,11 @@
     <div class="container">
     <section class="content">
       <div class="container-fluid">
-        
+        <h4>Update 30 November 2022</h4>
+        <ul>
+          <li>Anda sekarang dapat melihat tanggal berapa atasan langsungnya melakukan Approve perizinan, ini berlaku untuk perizinan kedepannya. Fitur ini dapat dilihat di menu <b>Status & Report -> Izin.</b></li>
+          <li>Fitur ini belum berlaku bagi karyawan unit TU.</li>
+        </ul>
           
 
           
