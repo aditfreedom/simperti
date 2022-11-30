@@ -502,6 +502,7 @@ class Admin extends CI_Controller {
 	public function edit_approval_izin($id)
 	{
 		$sess_data = $this->session->userdata();
+		$data['role'] = $this->session->userdata('role');
 		$data['edit_approval'] = $this->M_simperti->edit_izin($id)->result();
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar_admin',$sess_data);
@@ -510,7 +511,11 @@ class Admin extends CI_Controller {
 	}
 
 	public function updateapprovalizin(){
-	
+		$role = $this->input->post('role');
+		$approve_atasan = $this->input->post('approve_atasan');
+		$approve_tu = $this->input->post('approve_tu');
+
+
 		$data = array(
 			'id_user' => $this->input->post('id_user'),
 			'tanggal_izin' => $this->input->post('tanggal_izin'),
@@ -520,14 +525,45 @@ class Admin extends CI_Controller {
 			'approve_atasan' => $this->input->post('approve_atasan'),
 			'approve_tu' => $this->input->post('approve_tu')
 		);
+
+		$data2 = array(
+			'id_user' => $this->input->post('id_user'),
+			'tanggal_izin' => $this->input->post('tanggal_izin'),
+			'tanggal_akhir_izin' => $this->input->post('tanggal_akhir_izin'),
+			'kode_izin' => $this->input->post('kode_izin'),
+			'alasan' => $this->input->post('alasan'),
+			'approve_atasan' => $this->input->post('approve_atasan'),
+			'updated_atasan' => $this->input->post('updated_atasan'),
+			'approve_tu' => $this->input->post('approve_tu')
+			);
+
+		$data3 = array(
+				'id_user' => $this->input->post('id_user'),
+				'tanggal_izin' => $this->input->post('tanggal_izin'),
+				'tanggal_akhir_izin' => $this->input->post('tanggal_akhir_izin'),
+				'kode_izin' => $this->input->post('kode_izin'),
+				'alasan' => $this->input->post('alasan'),
+				'approve_atasan' => $this->input->post('approve_atasan'),
+				'updated_atasan' => $this->input->post('datetime'),
+				'approve_tu' => $this->input->post('approve_tu')
+				);
+
+
 	
 		$where = array(
 			'id' => $this->input->post('id')
 		);
 
-
+		if ($role==1) {
+			$this->M_simperti->updateizin($where,$data2,'izin');
+		}
+		if ($role==2) {
+			$this->M_simperti->updateizin($where,$data3,'izin');
+		}
+		else{
+			$this->M_simperti->updateizin($where,$data,'izin');
+		}
 	
-		$this->M_simperti->updateizin($where,$data,'izin');
 		$this->load->view('berhasil_ubah_approval_izin');
 	}
 

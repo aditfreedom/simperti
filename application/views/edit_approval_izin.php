@@ -42,6 +42,10 @@
             <input type="text" name="id" class="form-control" value="<?=$data->id?>">
             </div>
             <div class="form-group" hidden>
+            <label for="">ROLE </label>
+            <input type="text" name="role" class="form-control" value="<?=$role?>">
+            </div>
+            <div class="form-group" hidden>
             <label for="">ID USER</label>
             <input type="text" name="id_user" class="form-control" value="<?=$data->id_user?>">
             </div>
@@ -70,6 +74,11 @@
                         <option value="Ditolak">Ditolak</option>
                     </select>
                     </div>
+            <div class="form-group" hidden>
+            <label for="">TANGGAL DIAPPROVE (KHUSUS UNTUK APPROVAL ANGGOTA TU)</label>
+            <input type="text" name="updated_atasan" class="form-control" value="<?php date_default_timezone_set("Asia/Jakarta");echo date("Y-m-d H:i");?>" readonly hidden>
+            <input type="datetime-local" class="form-control" name="datetime" value="<?=$data->updated_atasan?>" >
+            </div>
 
                 <div class="form-group" <?=$hidden_kepsekdir?>>
                     <label for="">KONFIRMASI APPROVAL TU</label>

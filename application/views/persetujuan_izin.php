@@ -47,6 +47,7 @@
                     <th scope="col">NAMA KARYAWAN</th>
                     <th scope="col">DIVISI</th>
                     <th scope="col">JABATAN</th>
+                    <th <?=$hidden_sdk?> scope="col">TANGGAL IZIN</th>
                     <th scope="col">APPROVE ATASAN</th>
                     <th <?=$hidden_kepsekdir?> scope="col">APPROVE TU</th>
                     <th scope="col">AKSI</th>
@@ -60,6 +61,7 @@
                         <td><?php echo $data->nama; ?></td>
                         <td><?php echo $data->nama_divisi; ?></td>
                         <td><?php echo $data->jabatan; ?></td>
+                        <td<?=$hidden_sdk?>>(<?php echo $data->tanggal_izin; ?>) <b>s.d</b> (<?php echo $data->tanggal_akhir_izin; ?>)</td>
                         <td><a href="#" class="btn btn-warning"><b><?php echo $data->approve_atasan; ?></b></a></td>
                         <td <?=$hidden_kepsekdir?>><a href="#" class="btn btn-warning"><b><?php echo $data->approve_tu; ?></b></a></td>
                         <td><?php echo anchor('admin/edit_approval_izin/'.$data->id,'<div class="btn btn-primary btn-sm"><b>EDIT APPROVAL</b></div>')?></td>	

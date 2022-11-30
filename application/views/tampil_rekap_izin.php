@@ -27,8 +27,9 @@
                     <th scope="col">NAMA KARYAWAN</th>
                     <th scope="col">TANGGAL MULAI IZIN</th>
                     <th scope="col">TANGGAL BERAKHIR IZIN</th>
-                    <th scope="col">APPROVE ATASAN</th>
-                    <th scope="col">APPROVE TU</th>
+                    <th scope="col">KODE IZIN</th>
+                    <th scope="col">ALASAN</th>
+                    <th scope="col">STATUS PERIZINAN (DARI TU)</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,8 +40,9 @@
                         <td><?php echo $data->nama; ?></td>
                         <td><?php echo $data->tanggal_izin; ?></td>
                         <td><?php echo $data->tanggal_akhir_izin; ?></td>
-                        <td><a href="#" class="btn btn-warning"><b><?php echo $data->approve_atasan; ?></b></a></td>	
-                        <td><a href="#" class="btn btn-warning"><b><?php echo $data->approve_tu; ?></b></a></td>	
+                        <td><a><?php echo $data->kode_izin; ?></a></td>
+                        <td><a><?php echo $data->alasan; ?></a></td>	
+                        <td><a href="#" class="btn btn-success"><b><?php echo $data->approve_tu; ?></b></a></td>	
 
                     </tr>
                     <?php $i++; ?>

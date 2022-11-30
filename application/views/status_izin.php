@@ -49,6 +49,7 @@
                     <th scope="col">KODE IZIN</th>
                     <th <?=$hidden_kepsekdir?> <?=$hidden_sdk?> scope="col">TANGGAL IZIN</th>
                     <th scope="col">APPROVE ATASAN</th>
+                    <th scope="col">TANGGAL APPROVE ATASAN</th>
                     <th scope="col">APPROVE TU</th>
                     <th scope="col">AKSI</th>
                 </tr>
@@ -99,6 +100,7 @@
                         <td><?php echo $data->kode_izin; ?></td>
                         <td <?=$hidden_kepsekdir?> <?=$hidden_sdk?>>(<?php echo $data->tanggal_izin; ?>) <b>s.d</b> (<?php echo $data->tanggal_akhir_izin; ?>)</td>
                         <td><a href="#" class="btn <?=$btnatasan;?>"><b><?php echo $data->approve_atasan; ?></b></a></td>
+                        <td><a href="#"><b><?php echo $data->updated_atasan; ?></b></a></td>
                         <td><a href="#" class="btn <?=$btntu;?>" <?=$btn_atasan;?>><b><?php echo $data->approve_tu; ?></b></a></td>
                         <td <?=$btn_tu;?>><?php echo anchor('admin/cetak_izin/'.$data->id,'<div class="btn btn-info btn-sm"><i class="fa fa-print"></i><b> CETAK</b></div>')?></td>	
                     </tr>
